@@ -86,9 +86,9 @@ public class BeerClientImpl implements BeerClient {
         if (pageSize != null) {
             uriComponentsBuilder.queryParam("pageSize", beerStyle);
         }
-        String decodedURI = URLDecoder.decode( uriComponentsBuilder.toUriString(),StandardCharsets.UTF_8);
+
         ResponseEntity<BeerDTOPageImpl> response =
-                restTemplate.getForEntity( decodedURI,
+                restTemplate.getForEntity( uriComponentsBuilder.toUriString(),
                         BeerDTOPageImpl.class);
 
 
