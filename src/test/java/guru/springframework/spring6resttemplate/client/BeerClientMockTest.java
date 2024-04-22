@@ -73,11 +73,12 @@ public class BeerClientMockTest {
         String response = objectMapper.writeValueAsString(getPage());
 
         URI uri = UriComponentsBuilder.fromHttpUrl(URL + BeerClientImpl.GET_BEER_PATH)
-                .queryParam("beerName", "Magic%20Apple")
-                .build().toUri();
+                .queryParam("beerName", "Magic Apple")
+                .build().encode().toUri();
 
         server.expect(method(HttpMethod.GET))
                 .andExpect(requestTo(uri))
+                .andExpect(queryParam("beerName", "Magic%20Apple"))
                 .andRespond(withSuccess(response, MediaType.APPLICATION_JSON));
 
           Page<BeerDTO> responsePage = beerClient

@@ -88,7 +88,7 @@ public class BeerClientImpl implements BeerClient {
         }
 
         ResponseEntity<BeerDTOPageImpl> response =
-                restTemplate.getForEntity( uriComponentsBuilder.toUriString(),
+                restTemplate.getForEntity( URLDecoder.decode(uriComponentsBuilder.toUriString(), StandardCharsets.UTF_8),
                         BeerDTOPageImpl.class);
 
 
